@@ -11,10 +11,17 @@
 - Register it in the `ConfigureServices` method of `startup.cs` using `services.AddApiVersioning()`.
 - With this we have some form of API versioning in our project.
 
+```C#
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddApiVersioning();
+    }
+```
+
 ## Test Insomnia
 
 - Returns error (API version not specified). Can be fixed by Adding the query string `?api-version=1.0`
-- However this is not ideal bcos if you make this mandatory, your previous consumers may break.
+- However this is not ideal because if you make this mandatory, your previous consumers may break.
 
 ## Add Default Version to Startup.cs
 
@@ -62,7 +69,7 @@ services.AddApiVersioning(options =>
 ## It doesn't stop there, You can combine both
 
 ```C#
-    options.ApiVersionReader = ApiVersionReader.Combine( 
+    options.ApiVersionReader = ApiVersionReader.Combine(
         new HeaderApiVersionReader("X-Version"),
         new MediaTypeApiVersionReader("version")
     );
@@ -87,6 +94,6 @@ At the controller set `[ApiVersion("1.0", Deprecated = true)]`
 - At the controller change the route attribute to
 - You can use major and minor versions v1 or v1.0 and it work in the query string
 ```C#
-    [Route("api/v{version:apiVersion}/weather)]
+    [Route("api/v{version:apiVersion}/weather)"]
 ```
 
