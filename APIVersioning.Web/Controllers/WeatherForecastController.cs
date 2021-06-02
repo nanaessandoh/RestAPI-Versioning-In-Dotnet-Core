@@ -16,11 +16,7 @@ namespace APIVersioning.Web.Controllers
             {
                 Name = city,
                 CurrentTime = DateTime.UtcNow,
-                Temperature = 2,
-                Precipitation = 0.2,
-                Humidity = 0.77,
-                //Gist = "Cloudy with some rainfall in the evening."
-
+                Temperature = 2
             };
 
             return Ok(weatherInfo);
@@ -30,6 +26,13 @@ namespace APIVersioning.Web.Controllers
     internal class WeatherInfo
     {
         public string Name { get; set; }
+        public DateTime CurrentTime { get; set; }
+        public int Temperature { get; set; }
+    }
+
+    internal class WeatherInfoV2
+    {
+        public string CityName { get; set; }
         public DateTime CurrentTime { get; set; }
         public int Temperature { get; set; }
         public double Precipitation { get; set; }
