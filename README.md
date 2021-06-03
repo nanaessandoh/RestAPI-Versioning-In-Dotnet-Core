@@ -43,6 +43,16 @@ services.AddApiVersioning(options =>
 
 - Run request without query string `?api-version=1.0` to still get V1.0 and `?api-version=2.0` for V2
 
+
+## Supporting URL based Versioning
+- Very good way of versioning application
+- Comment out `VersionReader.Combine` lines so we default back to the route attributes
+- At the controller change the route attribute to
+- You can use major and minor versions v1 or v1.0 and it work in the query string
+```C#
+    [Route("api/v{version:apiVersion}/weather)"]
+```
+
 ## Passing the Version number in different way from besides a query parameter
 
 - Use the Accept header/Content-type
@@ -86,14 +96,4 @@ services.AddApiVersioning(options =>
 ## Deprecating a version after we have informed our consumers
 
 At the controller set `[ApiVersion("1.0", Deprecated = true)]`
-
-
-## Supporting URL based Versioning
-- Very good way of versioning application
-- Comment out `VersionReader.Combine` lines so we default back to the route attributes
-- At the controller change the route attribute to
-- You can use major and minor versions v1 or v1.0 and it work in the query string
-```C#
-    [Route("api/v{version:apiVersion}/weather)"]
-```
 
