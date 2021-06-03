@@ -46,7 +46,6 @@ services.AddApiVersioning(options =>
 
 ## Supporting URL based Versioning
 - Very good way of versioning application
-- Comment out `VersionReader.Combine` lines so we default back to the route attributes
 - At the controller change the route attribute to
 - You can use major and minor versions v1 or v1.0 and it work in the query string
 ```C#
